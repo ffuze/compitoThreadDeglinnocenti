@@ -1,10 +1,13 @@
 public class App {
     public static void main(String[] args) throws Exception {
-        Monoposto m1 = new Monoposto(1, "Ferrari", "Leclerc");
-        Monoposto m2 = new Monoposto(2, "Mercedes", "Bottas");
-        Monoposto m3 = new Monoposto(0, "Ferrari", "Hamilton");
-        Monoposto m4 = new Monoposto(0, "Ferrari", "Perez");
-        Monoposto m5 = new Monoposto(0, "Ferrari", "Verstappen");
+        BoxMugello box = new BoxMugello();
+        Semaforo s = new Semaforo(1);
+
+        Monoposto m1 = new Monoposto(1, "Ferrari", "Leclerc", s, box);
+        Monoposto m2 = new Monoposto(2, "Mercedes", "Bottas", s, box);
+        Monoposto m3 = new Monoposto(0, "Ferrari", "Hamilton", s, box);
+        Monoposto m4 = new Monoposto(0, "Ferrari", "Perez", s, box);
+        Monoposto m5 = new Monoposto(0, "Ferrari", "Verstappen", s, box);
 
         m1.start();
         m2.start();

@@ -1,3 +1,6 @@
+/**
+ * Classe semaforo
+ */
 public class Semaforo {
     /**
      * Stato del semaforo
@@ -24,14 +27,14 @@ public class Semaforo {
                 e.printStackTrace();
             }
         }
-        stato = 1;
+        stato--;
     }
 
     /**
      * Metodo v() del semaforo
      */
     public synchronized void v(){
-        stato = 1;
+        stato++;
         notify();
     }
 

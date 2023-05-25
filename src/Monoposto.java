@@ -32,26 +32,26 @@ public class Monoposto extends Thread{
     /**
      * Costruttore della monoposto
      */
-    public Monoposto(int ident, String scud, String pilota){
+    public Monoposto(int ident, String scud, String pilota, Semaforo s, BoxMugello box){
         this.ident = ident;
         this.scud = scud;
         this.pilota = pilota;
+        this.s = s;
+        this.box = box;
     }
 
     /**
-     * Override del metodo run() della classe Thread
+     * Override del metodo run() della classe Thread che fa continuare la gara
      */
     @Override
     public void run(){
-        int contGomme=1;
-        for(int giri=1; giri<=10; giri++, contGomme++){
-            if(contGomme==3){
-                contGomme=0;
+        for(int i=1; i<=10; i++){
+            if(i==3 || i==6 || i==9){
                 s.p(this.pilota);
                 box.pitStop(this.pilota);
                 s.v();
             }
-            System.out.println("GIRO-" + giri + " Completato " + this.pilota);
+            System.out.println("GIRO-" + i + " Completato " + this.pilota);
             try {
                 int tempo = (int)(Math.random()*5)+1;
                 Thread.sleep(tempo*1000);
