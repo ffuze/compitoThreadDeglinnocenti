@@ -15,10 +15,11 @@ public class Semaforo {
     /**
      * Metodo p() del semaforo
      */
-    public synchronized void p(){
+    public synchronized void p(String pilota){
         while(stato == 0){
             try {
-                wait();
+                System.out.println("---------------" + pilota + " in attesa al box---------------");
+                wait(); 
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

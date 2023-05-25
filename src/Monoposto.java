@@ -1,3 +1,8 @@
+import javax.swing.Box;
+
+/**
+ * Classe Monoposto
+ */
 public class Monoposto extends Thread{
     /**
      * L'identificativo della monoposto
@@ -13,6 +18,16 @@ public class Monoposto extends Thread{
      * Nome del pilota
      */
     private String pilota;
+
+    /**
+     * Definizione della box
+     */
+    private BoxMugello box;
+
+    /**
+     * Definizione del semaforo
+     */
+    private Semaforo s;
     
     /**
      * Costruttore della monoposto
@@ -23,16 +38,27 @@ public class Monoposto extends Thread{
         this.pilota = pilota;
     }
 
+    /**
+     * Override del metodo run() della classe Thread
+     */
     @Override
     public void run(){
-        int tempo = (int)(Math.random()*4)+1;
-        try {
-            Thread.sleep(tempo*1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        int contGomme=1;
+        for(int giri=1; giri<=10; giri++, contGomme++){
+            if(contGomme==3){
+                contGomme=0;
+                s.p(this.pilota);
+                box.pitStop(this.pilota);
+                s.v();
+            }
+            System.out.println("GIRO-" + giri + " Completato " + this.pilota);
+            try {
+                int tempo = (int)(Math.random()*5)+1;
+                Thread.sleep(tempo*1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-
-        System.out.println(this.pilota + " ha cominciato la gara!");
     }
 
     /**
